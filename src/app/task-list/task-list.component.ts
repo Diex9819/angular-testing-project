@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -6,22 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent {
+    tasks: string[] = [];
+    
 
-  tasks: string[] = [];
-
-  constructor() {
-    console.log('TaskListComponent initialized');
+  constructor(public taskService:TaskService) {
   }
 
-  addTask(task: string) {
-    console.log('Adding task:', task);
+  ngOnInit(){
+    this.tasks=this.taskService.getTask()
   }
-
-  updateTask(task: string) {
+  /*updateTask(task: string) {
     console.log('Updating task:', task);
   }
 
   deleteTask(task: string) {
     console.log('Deleting task:', task);
-  }
+  }*/
 }
